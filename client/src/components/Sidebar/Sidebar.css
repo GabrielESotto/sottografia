@@ -1,0 +1,65 @@
+.side-container {
+  width: 300px;
+  height: 100vh;
+  background-color: rgb(175, 124, 77);
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: all 0.6s ease-in;
+}
+
+.side-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1s ease-in;
+}
+
+.close-sidebar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 35px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.close {
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.close:hover {
+  transition: 0.3s ease-in-out;
+  color: rgb(110, 110, 110);
+}
+
+.close:active {
+  transition: 0.1s ease-in;
+  color: rgb(34, 33, 33);
+}
+
+.mobile-li {
+  padding: 20px;
+  text-align: center;
+  list-style: none;
+}
+
+.mobile-li a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.mobile-li a:hover {
+  transition: 0.3s ease-in-out;
+  color: rgb(110, 110, 110);
+}
+
+.mobile-li a:active {
+  transition: 0.1s ease-in;
+  color: rgb(34, 33, 33);
+}
