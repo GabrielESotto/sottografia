@@ -36,5 +36,40 @@ const createAdminUser = async (req: Request, res: Response, next: NextFunction) 
 }
 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
-  
+  try {
+    const { username, password } = req.body;
+
+    if(!username || !password) {
+      res.status(401).send('Todos os campos devem ser preenchidos')
+    }
+
+    const user = await User.findOne({ username: username })
+
+    if(!user || user === null) {
+      return res.status(500).send('Usuario não encontrado')
+    }
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign(
+        { user_id: user._id },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "30min"
+        }
+      )
+
+      user.token = token;
+
+      return res.status(200).json({ user })
+    }
+
+    return res.status(401).json('Dados inválidos')
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default {
+  createAdminUser,
+  loginUser
 }

@@ -1,0 +1,92 @@
+import { NextFunction, Request, Response } from "express";
+import mongoose from "mongoose";
+import Photos from '../models/Photos'
+
+
+// Add new photo in DB
+const addNewPhoto = async (req: Request, res: Response, next: NextFunction) => {
+  const { title, event } = req.body;
+  const image = req.file?.filename;
+
+  if(!title) {
+    return res.status(400).json({ message: 'Titulo é obrigatorio'})
+  } else if (!event) {
+    return res.status(400).json({ message: 'Evento é obrigatorio'})
+  } else if (!image) {
+    return res.status(400).json({ message: 'Imagem é obrigatoria'})
+  }
+
+  const newPhoto = await Photos.create({
+    image,
+    title,
+    event,
+  });
+
+  // If photo was created successfully, return data
+  if (!newPhoto) {
+    return res.send(422).json({
+      errors: ["Houve um problema, tente novamente mais tarde"]
+    })
+  }
+
+  return res.status(201).json({ newPhoto })
+}
+
+// Remove a photo from DB
+const deletePhoto = async(req: Request, res: Response, next: NextFunction) => {
+  try{
+    const {id} = req.params
+    const objId = new mongoose.Types.ObjectId(id)
+  
+    const photo = await Photos.findById(objId)
+  
+    // Check if photo exists
+    if(!photo) {
+      return res.status(404).json({ errors: ['Foto não encontrada']})
+    }
+  
+    if(photo !== null) {
+      await Photos.findByIdAndDelete(photo._id)
+    
+      return res.status(200).json({id: photo._id, message: 'Foto excluida com sucesso'})
+    } 
+  } catch (error) {
+    return res.status(404).json({ errors: ['Foto não encontrada'] })
+  }
+}
+
+// Get all photos from DB
+const getAllPhotos = async(req: Request, res: Response, next: NextFunction) => {
+  try{
+    const photos = await Photos.find({}).sort([["createdAt", -1]]).exec()
+  
+    return res.status(200).json(photos)
+  } catch (error) {
+    return res.status(404).json({ message: error })
+  }
+}
+
+// Get only photos from an specify event
+const getOnlySpecifyPhotos = async(req: Request, res: Response, next: NextFunction) => {
+  try{
+    const {event} = req.params
+
+    const photos = await Photos.find({event: event}).sort([['createdAt', -1]]).exec()
+
+    if(!photos || photos.length === 0) {
+      return res.status(404).json({ message: 'Nenhuma foto desse evento foi encontrada'})
+    }
+
+    return res.status(200).json(photos)
+
+  } catch(error) {
+    return res.status(404).json({ message: error })
+  }
+}
+
+export default {
+  addNewPhoto,
+  deletePhoto,
+  getAllPhotos,
+  getOnlySpecifyPhotos
+}

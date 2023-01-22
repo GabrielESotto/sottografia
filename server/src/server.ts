@@ -1,8 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose'
 import http from 'http'
+import bodyParser from 'body-parser';
 
 import { config } from './config/config';
+import userRoutes from './routes/User';
+import photoRoutes from './routes/Photos';
+import agendaRoutes from './routes/Agenda';
 
 const router = express();
 
@@ -18,6 +22,7 @@ mongoose.connect(config.mongo.url, { retryWrites: true, w: 'majority'})
   console.error(error)
 })
 
+
 // Only start server if Mongo connects
 const StartServer = () => {
   router.use((req, res, next) => {
@@ -31,6 +36,7 @@ const StartServer = () => {
   });
 
   router.use(express.urlencoded({ extended: true }))
+  router.use(bodyParser.json())
   router.use(express.json())
 
   // Rules API
@@ -47,11 +53,13 @@ const StartServer = () => {
   });
 
   // Routes
-
+  router.use('/users', userRoutes)
+  router.use('/photos', photoRoutes)
+  router.use('/agenda', agendaRoutes)
 
   // Error handling
   router.use((req, res) => {
-    const error = new Error('Not found')
+    const error = new Error('Route not found')
 
     console.log(error)
 
