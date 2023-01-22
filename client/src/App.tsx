@@ -1,19 +1,25 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import About from './pages/About';
-import Home from './pages/Home';
-import Individual from './pages/Individual';
-import Services from './pages/Services';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import About from "./pages/About";
+import Agenda from "./pages/Admin/Agenda/Agenda";
+import LoggedAdmin from "./pages/Admin/LoggedPage/LoggedAdmin";
+import Admin from "./pages/Admin/Login Page/Admin";
+import Home from "./pages/Home";
+import Individual from "./pages/Individual";
+import Services from "./pages/Services";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/services' element={<Services />} />
-      <Route path='/individual' element={<Individual />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/individual" element={<Individual />} />
+      <Route path="/adminpage" element={<Admin />} />
+      <Route path="/logged/admin" element={<LoggedAdmin />} />
+      <Route path="/logged/admin/agenda" element={<Agenda />} />
     </Routes>
   );
-}
+};
 
 export default App;

@@ -1,14 +1,14 @@
-import React from 'react'
-import AboutContent from '../components/About/AboutContent'
-import Header from '../components/Header/Header'
+import React from "react";
+import AboutContent from "../components/About/AboutContent";
+import Header from "../components/Header/Header";
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header adminPage={false} />
       <AboutContent />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

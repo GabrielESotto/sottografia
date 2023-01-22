@@ -1,12 +1,12 @@
-import Header from '../components/Header/Header'
+import Header from "../components/Header/Header";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header adminPage={false} />
       <div className="home"></div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

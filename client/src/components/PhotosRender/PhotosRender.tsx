@@ -1,12 +1,11 @@
-import './PhotosRender.css'
+import "./PhotosRender.css";
 
-const PhotosRender = () => {
+const PhotosRender: React.FC = () => {
   return (
     <>
       <div className="photos-container">
         <div className="spacing-header">
           <div className="wrapper-photos">
-
             <div className="first-row">
               <div className="first-photos" />
               <div className="wrap-two">
@@ -29,12 +28,11 @@ const PhotosRender = () => {
               </div>
               <div className="last-first-photo" />
             </div>
-            
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PhotosRender
+export default PhotosRender;

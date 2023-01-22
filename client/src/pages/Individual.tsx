@@ -1,13 +1,13 @@
-import Header from '../components/Header/Header'
-import PhotosRender from '../components/PhotosRender/PhotosRender'
+import Header from "../components/Header/Header";
+import PhotosRender from "../components/PhotosRender/PhotosRender";
 
-const Individual = () => {
+const Individual: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header adminPage={false} />
       <PhotosRender />
     </>
-  )
-}
+  );
+};
 
-export default Individual
+export default Individual;
