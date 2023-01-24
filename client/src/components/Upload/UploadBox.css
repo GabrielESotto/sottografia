@@ -1,0 +1,35 @@
+.drop-container {
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+  max-width: 50%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragActive {
+  border-color: #78e5d5;
+}
+
+.dragReject {
+  border-color: #e57878;
+}
+
+.upload-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  color: #999;
+}
+
+.error {
+  color: #e57878;
+}
+
+.success {
+  color: #78e5d5;
+}

@@ -13,7 +13,7 @@ const LoggedAdmin: React.FC = () => {
               <a href="/logged/admin/agenda">Agenda</a>
             </li>
             <li className="admin-li">
-              <a href="#">Entregas</a>
+              <a href="/logged/admin/delivery">Entregas</a>
             </li>
             <li className="admin-li">
               <a href="#">Fotos</a>

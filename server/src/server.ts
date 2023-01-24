@@ -7,7 +7,10 @@ import { config } from './config/config';
 import userRoutes from './routes/User';
 import photoRoutes from './routes/Photos';
 import agendaRoutes from './routes/Agenda';
+import postsRoutes from './routes/Posts';
 
+const path = require('path')
+const cors = require('cors')
 const router = express();
 
 // Connect to MongoDB
@@ -35,9 +38,12 @@ const StartServer = () => {
     next();
   });
 
+  router.use(cors())
   router.use(express.urlencoded({ extended: true }))
   router.use(bodyParser.json())
+  router.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
   router.use(express.json())
+  
 
   // Rules API
   router.use((req, res, next) => {
@@ -56,6 +62,7 @@ const StartServer = () => {
   router.use('/users', userRoutes)
   router.use('/photos', photoRoutes)
   router.use('/agenda', agendaRoutes)
+  router.use('/posts', postsRoutes)
 
   // Error handling
   router.use((req, res) => {

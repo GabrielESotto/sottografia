@@ -1,4 +1,5 @@
 import express from 'express';
+import multer from 'multer';
 import controller from '../controllers/Photos'
 
 const { addPhotoValidation } = require('../middlewares/photoValidation')
@@ -12,4 +13,4 @@ router.get('/get', controller.getAllPhotos)
 router.get('/getonly/:event', controller.getOnlySpecifyPhotos)
 
 export = router;
-  
+   
