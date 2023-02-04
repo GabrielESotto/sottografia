@@ -2,6 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import Photos from '../models/Photos'
 
+const { promisify } = require('util')
+const fs = require('fs')
+const path = require('path')
 
 // Add new photo in DB
 const addNewPhoto = async (req: Request, res: Response, next: NextFunction) => {
@@ -47,6 +50,7 @@ const deletePhoto = async(req: Request, res: Response, next: NextFunction) => {
   
     if(photo !== null) {
       await Photos.findByIdAndDelete(photo._id)
+      promisify(fs.unlink)(path.resolve(__dirname, '..', '..', 'uploads', 'photos', photo.image))
     
       return res.status(200).json({id: photo._id, message: 'Foto excluida com sucesso'})
     } 

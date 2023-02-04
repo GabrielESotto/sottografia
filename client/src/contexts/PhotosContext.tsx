@@ -75,7 +75,6 @@ export const PhotosProvider = ({ children }: PhotosContextProps) => {
       .post("http://localhost:3001/photos/add", formData)
       .then((res) => {
         setMessage("Foto adicionada com sucesso");
-
         setTimeout(() => {
           window.location.reload();
         }, 500);
