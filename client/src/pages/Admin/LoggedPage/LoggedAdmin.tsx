@@ -4,8 +4,9 @@ import "./LoggedAdmin.css";
 const LoggedAdmin: React.FC = () => {
   return (
     <>
+      <HeaderAdmin />
       <div className="bg-loggedpage">
-        <HeaderAdmin />
+        <div className="welcome-img" />
       </div>
     </>
   );

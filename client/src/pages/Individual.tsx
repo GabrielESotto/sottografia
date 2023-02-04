@@ -5,7 +5,7 @@ const Individual: React.FC = () => {
   return (
     <>
       <Header adminPage={false} />
-      <PhotosRender />
+      <PhotosRender typeRender="Individual" />
     </>
   );
 };

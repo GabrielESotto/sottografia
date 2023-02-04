@@ -1,6 +1,6 @@
 .admin-header {
   width: 100%;
-  background-color: rgba(148, 191, 241, 0.664);
+  background-color:rgba(175, 124, 77, 0.8);
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -14,7 +14,7 @@
 }
 
 .mini-logo {
-  width: 50%;
+  width: 30%;
 }
 
 .title-logo {
@@ -25,9 +25,9 @@
 
 .admin-ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  width: 20% ;
+  width: 50%;
 }
 
 .admin-li {
@@ -50,4 +50,27 @@
 
 .admin-li a:active {
   color: rgb(36, 36, 36);
+}
+
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .admin-li {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .title-logo {
+    margin-top: 23px;
+  }
+
+  .mini-logo {
+    width: 50%;
+    margin-left: 30px;
+  }
 }

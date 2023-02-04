@@ -11,6 +11,7 @@ router.post('/add', imageUpload.single("image"), addPhotoValidation(), controlle
 router.delete('/delete/:id', controller.deletePhoto)
 router.get('/get', controller.getAllPhotos)
 router.get('/getonly/:event', controller.getOnlySpecifyPhotos)
+router.patch('/updateTitle/:id', controller.updateTitlePhoto)
 
 export = router;
    

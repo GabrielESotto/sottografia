@@ -6,7 +6,7 @@ const ServicesContent: React.FC = () => {
       <div className="services-container">
         <div className="wrapper-services">
           <a className="link-portfolio" href="/individual">
-            <div className="service-card">
+            <div className="service-card individual">
               <div className="service-info">
                 <div className="service-card-content">
                   <h1 className="service-title">Individual</h1>
@@ -15,7 +15,7 @@ const ServicesContent: React.FC = () => {
             </div>
           </a>
           <a className="link-portfolio" href="/casal">
-            <div className="service-card">
+            <div className="service-card casal">
               <div className="service-info">
                 <div className="service-card-content">
                   <h1 className="service-title">Casal</h1>
@@ -24,7 +24,7 @@ const ServicesContent: React.FC = () => {
             </div>
           </a>
           <a className="link-portfolio" href="/familia">
-            <div className="service-card">
+            <div className="service-card familia">
               <div className="service-info">
                 <div className="service-card-content">
                   <h1 className="service-title">Familia</h1>
@@ -33,7 +33,7 @@ const ServicesContent: React.FC = () => {
             </div>
           </a>
           <a className="link-portfolio" href="/gestante">
-            <div className="service-card">
+            <div className="service-card gestante">
               <div className="service-info">
                 <div className="service-card-content">
                   <h1 className="service-title">Gestante</h1>
@@ -42,7 +42,7 @@ const ServicesContent: React.FC = () => {
             </div>
           </a>
           <a className="link-portfolio" href="/eventos">
-            <div className="service-card">
+            <div className="service-card eventos">
               <div className="service-info">
                 <div className="service-card-content">
                   <h1 className="service-title">Eventos</h1>

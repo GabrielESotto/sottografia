@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import "./FileList.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
@@ -9,7 +11,6 @@ interface IFiles {
 }
 
 const FileList: React.FC<IFiles> = ({ files, onDelete }: IFiles) => {
-  console.log(files);
   return (
     <>
       <div className="container-files">

@@ -1,7 +1,7 @@
 .side-container {
   width: 300px;
   height: 100vh;
-  background-color: rgb(175, 124, 77);
+  background-color: rgba(175, 124, 77, 0.8);
   position: fixed;
   top: 0;
   right: 0;
@@ -33,12 +33,12 @@
 
 .close:hover {
   transition: 0.3s ease-in-out;
-  color: rgb(110, 110, 110);
+  color: rgb(215, 94, 94);
 }
 
 .close:active {
   transition: 0.1s ease-in;
-  color: rgb(34, 33, 33);
+  color: rgb(253, 0, 0);
 }
 
 .mobile-li {
@@ -56,10 +56,20 @@
 
 .mobile-li a:hover {
   transition: 0.3s ease-in-out;
-  color: rgb(110, 110, 110);
+  color: rgb(62, 62, 62);
 }
 
 .mobile-li a:active {
   transition: 0.1s ease-in;
   color: rgb(34, 33, 33);
+}
+
+@media screen and (max-width: 500px) {
+  .side-container {
+    width: 100%;
+  }
+
+  .mobile-li {
+    margin-top: 10px;
+  }
 }

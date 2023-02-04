@@ -28,7 +28,7 @@ const Sidebar: React.FC<IProps> = ({ closeSide }: IProps) => {
                   <a href="/services">Serviços</a>
                 </li>
                 <li className="mobile-li">
-                  <a href="#">Contato</a>
+                  <a href="/contact">Contato</a>
                 </li>
               </ul>
             </nav>

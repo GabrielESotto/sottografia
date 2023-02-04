@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { createTheme, styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -102,9 +102,17 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
+const newTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#af7c4dc0",
+    },
+  },
+});
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: newTheme.palette.primary.main,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -168,7 +176,6 @@ export default function CustomPaginationActionsTable() {
           <TableHead>
             <TableRow>
               <StyledTableCell>Ensaio</StyledTableCell>
-              <StyledTableCell>Descrição</StyledTableCell>
               <StyledTableCell align="right">Data</StyledTableCell>
               <StyledTableCell align="right">Horário</StyledTableCell>
               <StyledTableCell align="right">Editar</StyledTableCell>
@@ -184,19 +191,28 @@ export default function CustomPaginationActionsTable() {
               : agendaData
             ).map((row) => (
               <TableRow key={row.nameEvent}>
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" sx={{ width: 1500 }}>
                   {row.nameEvent}
                 </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.description}
-                </TableCell>
-                <TableCell style={{ width: 300 }} align="right">
+                <TableCell
+                  style={{ width: 300 }}
+                  align="right"
+                  sx={{ width: 100 }}
+                >
                   {row.dateEvent}
                 </TableCell>
-                <TableCell style={{ width: 200 }} align="right">
+                <TableCell
+                  style={{ width: 200 }}
+                  align="right"
+                  sx={{ width: 100 }}
+                >
                   {row.hourEvent}
                 </TableCell>
-                <TableCell style={{ width: 200 }} align="right">
+                <TableCell
+                  style={{ width: 200 }}
+                  align="right"
+                  sx={{ width: 100 }}
+                >
                   <VisibilityIcon
                     onClick={() => {
                       handleOpen();
@@ -209,7 +225,11 @@ export default function CustomPaginationActionsTable() {
                     sx={{ cursor: "pointer" }}
                   />
                 </TableCell>
-                <TableCell style={{ width: 200 }} align="right">
+                <TableCell
+                  style={{ width: 200 }}
+                  align="right"
+                  sx={{ width: 100 }}
+                >
                   <DeleteIcon
                     onClick={() => {
                       handleClickOpen();

@@ -6,6 +6,8 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import HeaderAdmin from "../../../components/HeaderAdmin/HeaderAdmin";
 import CustomPaginationActionsTable from "../../../components/Table/Table";
 import axios from "axios";
+import { SnackbarOrigin } from "@mui/material";
+import Snackbars, { State } from "../../../components/Snackbar/Snackbar";
 
 const Agenda: React.FC = () => {
   const [isCreating, setIsCreating] = useState<boolean>(false);
@@ -35,18 +37,28 @@ const Agenda: React.FC = () => {
 
         setTimeout(() => {
           window.location.reload();
-        });
+        }, 500);
       })
       .catch((error) => {
-        console.log(error);
-        setMessage(error.response.data.errors);
+        setMessage(error.response.data.message);
       });
+  };
+
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: "bottom",
+    horizontal: "right",
+  });
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState });
   };
 
   return (
     <>
-      <div className="bg-loggedpage">
-        <HeaderAdmin />
+      <HeaderAdmin />
+      <div className="background-loggedpage">
+        <Snackbars message={message} state={state} setState={setState} />
         <div className="container-agenda">
           <h1 className="title-agenda">Agenda de Ensaios</h1>
           {isCreating ? (
@@ -63,7 +75,7 @@ const Agenda: React.FC = () => {
                   />
                 </div>
                 <h1 className="title-create">Novo ensaio</h1>
-                <form className="create-schedule">
+                <form className="create-schedule" onSubmit={handleSubmitCreate}>
                   <label className="label-create">Nome do evento</label>
                   <input
                     className="input-create"
@@ -95,10 +107,17 @@ const Agenda: React.FC = () => {
                     onChange={(e) => setHourEvent(e.target.value)}
                   />
 
-                  <button onClick={handleSubmitCreate} className="btn-create">
-                    Adicionar
-                  </button>
-                  <div>{message && <h1>{message}</h1>}</div>
+                  <div className="wrap-button">
+                    <button
+                      onClick={handleClick({
+                        vertical: "bottom",
+                        horizontal: "right",
+                      })}
+                      className="btn-create"
+                    >
+                      Adicionar
+                    </button>
+                  </div>
                 </form>
               </div>
             </>

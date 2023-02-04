@@ -60,7 +60,10 @@ const getAllPhotos = async(req: Request, res: Response, next: NextFunction) => {
   try{
     const photos = await Photos.find({}).sort([["createdAt", -1]]).exec()
   
-    return res.status(200).json(photos)
+    return res.status(200).json({
+      file: photos,
+      url: "http://localhost:3001/photos/"
+    })
   } catch (error) {
     return res.status(404).json({ message: error })
   }
@@ -84,9 +87,32 @@ const getOnlySpecifyPhotos = async(req: Request, res: Response, next: NextFuncti
   }
 }
 
+const updateTitlePhoto = async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = req.params.id;
+
+    return Photos.findById(id)
+      .then((title) => {
+        if(title) {
+          title.set(req.body)
+
+          return title
+            .save()
+            .then((title) => res.status(201).json({ title }))
+            .catch((error) => res.status(404).json({ error }))
+        } else {
+          return res.status(404).json({ message: 'Not found'})
+        }
+      })
+  } catch(error) {
+    return res.status(404).json({ message: error })
+  }
+}
+
 export default {
   addNewPhoto,
   deletePhoto,
   getAllPhotos,
-  getOnlySpecifyPhotos
+  getOnlySpecifyPhotos,
+  updateTitlePhoto
 }

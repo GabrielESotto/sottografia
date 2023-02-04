@@ -16,8 +16,6 @@
   margin-top: 15px;
 }
 
-
-
 .file-info {
   display: flex;
   align-items: center;
@@ -30,14 +28,14 @@
 
 .file-info span {
   font-size: 12px;
-  color: #999;
+  color: rgb(76, 76, 76);
   margin-top: 5px;
 }
 
 .file-info span button {
   border: 0;
   background: transparent;
-  color: #e57878;
+  color: #f42b2b;
   margin-left: 5px;
   cursor: pointer;
 }

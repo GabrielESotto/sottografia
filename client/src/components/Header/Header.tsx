@@ -19,7 +19,9 @@ const Header: React.FC<IProps> = ({ adminPage }: IProps) => {
       <header>
         <div className="container">
           <nav className="navbar">
-            <a className="logo">Isabela Sotto • Fotografia</a>
+            <div className="logo-content">
+              <div className="logo"></div>
+            </div>
             {!adminPage && (
               <ul className="navbar-ul">
                 <li className="navbar-li">
@@ -32,7 +34,7 @@ const Header: React.FC<IProps> = ({ adminPage }: IProps) => {
                   <a href="/services">Serviços</a>
                 </li>
                 <li className="navbar-li">
-                  <a href="#">Contato</a>
+                  <a href="/contact">Contato</a>
                 </li>
               </ul>
             )}

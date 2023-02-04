@@ -1,42 +1,40 @@
 .about-container {
-  height: calc(100vh - 130px);
   width: 100%;
+  min-height: calc(100% - 135px);
   background-image: url('../../assets/images/bgAbout.png');
   background-position: center;
   object-fit: fill;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .about-content {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-}
-
-.title-about {
-  margin-top: 20px;
-  text-align: center;
+  align-items: center;
 }
 
 .wrapper {
+  width: 100%;
   display: flex;
-  margin-top: 150px;
+  justify-content: space-evenly;
+  align-items:center;
+  margin-top: 120px;
+  margin-bottom: 20px;
 }
 
 .wrapper-left {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  
+  margin: 20px 0;
 }
 
 .wrapper-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 50%;
+  margin: 20px 0;
 }
 
 .wrapper-right h1 {
@@ -67,4 +65,101 @@
   background-repeat: no-repeat;
   object-fit: contain;
   margin: 50px auto;
+}
+
+@media screen and (max-width: 1100px) {
+  .image-person {
+    width: 300px;
+    height: 350px;
+  }
+
+  .shadow-img {
+    width: 350px;
+    height: 450px;
+  }
+
+  .wrapper-left {
+    width: 100%;
+    margin-top: 75px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .wrapper-right {
+    width: 100%;
+    margin-top: 75px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .wrapper-left {
+    margin: 0;
+  }
+
+  .wrapper-right {
+    margin: 0;
+    display: block;
+  }
+
+  .wrapper-right h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .wrapper-right p {
+    margin: 20px auto 40px auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper-right h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .wrapper-right p {
+    font-size: 15px;
+    width: 400px;
+    margin: 20px auto 60px auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .wrapper-right h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .wrapper-right p {
+    font-size: 15px;
+    width: 310px;
+    margin: 20px auto 60px auto;
+  }
+}
+
+@media screen and (max-height: 990px) {
+  .wrapper {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-height: 830px) {
+  .wrapper {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-height: 740px) {
+  .wrapper {
+    margin-top: 0;
+    margin-bottom: 70px;
+  }
 }

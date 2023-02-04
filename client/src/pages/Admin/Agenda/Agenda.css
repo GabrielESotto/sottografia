@@ -1,10 +1,17 @@
-.bg-loggedpage {
+.background-loggedpage {
   width: 100%;
-  height: 100%;
-  background-color: rgb(99, 99, 99);
+  background-image: url('../../../assets/images/bgAbout.png');
+  background-position: center;
+  object-fit: fill;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: calc(100% - 50px);
 }
 
 .container-agenda {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -19,15 +26,31 @@
 
 .new-schedule {
   margin-bottom: 20px;
+  width: 200px;
   padding: 8px;
-  border-radius: 10px;
   border: 0;
+  border-radius: 10px;
   letter-spacing: 0.2px;
-  background: linear-gradient(260deg, rgba(62, 59, 59, 0.8), rgba(230, 230, 230, 0.8));
-  box-shadow: 2px 2px 3px 1px black;
   font-weight: lighter;
-  font-size: 14px;
+  font-size: 16px;
+  font-style: italic;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.524), rgb(129, 69, 69));
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 2px rgba(1, 1, 1, 0.609);
+  transition: 0.3s ease-in;
+  text-decoration: none;
+}
+
+.new-schedule:hover {
+  box-shadow: 4px 4px 4px 2px rgba(1, 1, 1, 0.609);
+}
+
+.new-schedule:active {
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3) inset;
 }
 
 .new-schedule:hover {
@@ -50,16 +73,23 @@
   width: 100%;
   height: 550px;
   max-width: 800px;
-  margin: 0 auto;
-  background-color: aliceblue;
+  margin: 20px auto;
+  background-color: rgba(175, 124, 77, 0.693);
   border-radius: 20px;
+}
+
+.wrap-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .title-create {
   text-align: center;
   font-weight: lighter;
   font-size: 35px;
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 .create-schedule {
@@ -80,41 +110,82 @@
 .input-create {
   border: 0;
   outline: 0;
+  border-radius: 10px;
+  padding: 9px;
   margin-bottom: 15px;
   margin-top: 7px;
-  background-color: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.435);
 }
 
 .textarea {
   resize: none;
   height: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.435);
-  padding: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 8px;
 }
 
-.btn-create{
+.btn-create {
+  margin: 20px 0;
+  padding: 9px;
   width: 100%;
-  max-width: 350px;
-  padding: 5px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: lighter;
+  font-size: 16px;
+  font-style: italic;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.524), rgb(129, 69, 69));
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px auto;
-  border-radius: 10px;
-  outline: 0;
-  border: 0;
-  background: linear-gradient(60deg, rgba(0, 0, 0, 0.603), rgba(36, 26, 26, 0.792));
-  color: white;
-  box-shadow: 1px 1px 3px 1px black;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 2px rgba(1, 1, 1, 0.609);
+  transition: 0.3s ease-in;
+  text-decoration: none;
 }
 
 .btn-create:hover {
-  transition: 0.3s ease-in;
-  box-shadow: 2px 2px 5px 2px black;
+  box-shadow: 4px 4px 4px 2px rgba(1, 1, 1, 0.609);
 }
 
 .btn-create:active {
-  box-shadow: 1px 1px 1px 1px rgba(188, 188, 188, 0.542) inset;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3) inset;
+}
+
+.wrapper-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px 20px;
+}
+
+
+@media screen and (max-width: 1500px) {
+  .container-agenda {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper-create {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper-create {
+    max-width: 350px;
+  }
+
+  .label-create {
+    margin-left: 20px;
+  }
+
+  .input-create {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .btn-create {
+    width: 90%;
+  }
 }

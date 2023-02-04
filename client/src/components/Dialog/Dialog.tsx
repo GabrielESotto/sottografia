@@ -10,6 +10,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import axios from "axios";
+import Snackbars, { State } from "../Snackbar/Snackbar";
+import { SnackbarOrigin } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -27,7 +29,7 @@ interface IDialog {
 }
 
 export default function AlertDialogSlide({ open, funcClose, id }: IDialog) {
-  const [, setMessage] = React.useState("");
+  const [message, setMessage] = React.useState("");
 
   const handleDeleteSchedule = async () => {
     await axios
@@ -44,8 +46,19 @@ export default function AlertDialogSlide({ open, funcClose, id }: IDialog) {
       });
   };
 
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: "bottom",
+    horizontal: "right",
+  });
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState });
+  };
+
   return (
-    <div>
+    <>
+      <Snackbars message={message} state={state} setState={setState} />
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -66,12 +79,13 @@ export default function AlertDialogSlide({ open, funcClose, id }: IDialog) {
             onClick={() => {
               funcClose();
               void handleDeleteSchedule();
+              handleClick({ vertical: "bottom", horizontal: "right" });
             }}
           >
             Sim
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

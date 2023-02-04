@@ -9,7 +9,7 @@ import HeaderAdmin from "../../../components/HeaderAdmin/HeaderAdmin";
 import UploadBox from "../../../components/Upload/UploadBox";
 import FileList from "../../../components/FileList/FileList";
 import api from "../../../services/api";
-import { AxiosProgressEvent } from "axios";
+import axios, { AxiosProgressEvent } from "axios";
 
 export interface Files {
   path: string;
@@ -58,7 +58,6 @@ export interface IFilesFromAPI {
 
 const Delivery: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<IUploadedFiles[]>([]);
-  const [isUploading, setIsUploading] = useState(true);
 
   const handleUpload = (files: Files[]) => {
     const uploadedFile = files.map((file) => ({
@@ -78,12 +77,12 @@ const Delivery: React.FC = () => {
     uploadedFile.forEach(processUpload);
   };
 
-  const processUpload = (uploadedFile: IUploadedFiles) => {
+  const processUpload = async (uploadedFile: IUploadedFiles) => {
     const data = new FormData();
 
     data.append("file", uploadedFile.file, uploadedFile.name);
 
-    api
+    await api
       .post<IUploadedFiles>("/newfile", data, {
         onUploadProgress: (e: AxiosProgressEvent) => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -107,6 +106,8 @@ const Delivery: React.FC = () => {
           error: true,
         });
       });
+
+    await fetchData();
   };
 
   const updateFile = (id: string, data: any) => {
@@ -120,22 +121,24 @@ const Delivery: React.FC = () => {
   };
 
   const fetchData = async () => {
-    const response = await api.get("/allfiles");
-    setUploadedFiles(
-      response.data.posts.map((file: IFilesFromAPI) => ({
-        id: file._id,
-        name: file.name,
-        readableSize: filesize(file.size),
-        preview: file.url,
-        uploaded: true,
-        url: file.url,
-      }))
-    );
+    await api
+      .get("/allfiles")
+      .then((res) => {
+        setUploadedFiles(
+          res.data.posts.map((file: IFilesFromAPI) => ({
+            id: file._id,
+            name: file.name,
+            readableSize: filesize(file.size),
+            preview: file.url,
+            uploaded: true,
+            url: file.url,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleDelete = async (id: string) => {
     await api.delete(`/deletefile/${id}`);
@@ -149,9 +152,35 @@ const Delivery: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleLink = () => {
+    axios
+      .get("http://localhost:3001/posts/ziplink")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDownload = () => {
+    axios
+      .get("http://localhost:3001/posts/download")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
-      <div className="bg-loggedpage">
+      <div>
         <HeaderAdmin />
         <div className="container-delivery">
           <h1 className="title-delivery">Entrega dos Ensaios</h1>
@@ -161,6 +190,11 @@ const Delivery: React.FC = () => {
               {!!uploadedFiles.length && (
                 <FileList files={uploadedFiles} onDelete={handleDelete} />
               )}
+              <p className="select-photos">
+                Fotos selecionadas: {uploadedFiles.length}
+              </p>
+              <button onClick={handleLink}>Gerar Link</button>
+              <button onClick={handleDownload}>Download</button>
             </div>
           </>
         </div>

@@ -42,6 +42,7 @@ const StartServer = () => {
   router.use(express.urlencoded({ extended: true }))
   router.use(bodyParser.json())
   router.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
+  router.use('/photos', express.static(path.resolve(__dirname, '..', 'uploads', 'photos')))
   router.use(express.json())
   
 
@@ -63,6 +64,7 @@ const StartServer = () => {
   router.use('/photos', photoRoutes)
   router.use('/agenda', agendaRoutes)
   router.use('/posts', postsRoutes)
+  
 
   // Error handling
   router.use((req, res) => {
@@ -77,3 +79,7 @@ const StartServer = () => {
 
   http.createServer(router).listen(config.server.port, () => console.log(`Server is running on port ${config.server.port}`))
 }
+function multiparty(): import("express-serve-static-core").RequestHandler<{}, any, any, import("qs").ParsedQs, Record<string, any>> {
+  throw new Error('Function not implemented.');
+}
+

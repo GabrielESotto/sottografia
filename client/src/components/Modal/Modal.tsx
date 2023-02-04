@@ -4,15 +4,18 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
+import Snackbars, { State } from "../Snackbar/Snackbar";
+import { SnackbarOrigin } from "@mui/material";
 
 const style = {
   position: "absolute" as const,
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 350,
   bgcolor: "background.paper",
   border: "2px solid #000",
+  backgroundColor: "rgba(175, 124, 77, 0.9)",
   boxShadow: 24,
   p: 4,
 };
@@ -63,13 +66,24 @@ export default function BasicModal({
           window.location.reload();
         }, 500);
       })
-      .catch((error) => {
-        setMessage(error.response.data.errors);
+      .catch(() => {
+        setMessage("Houve um erro, tente novamente mais tarde.");
       });
+  };
+
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: "bottom",
+    horizontal: "right",
+  });
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState });
   };
 
   return (
     <>
+      <Snackbars message={message} state={state} setState={setState} />
       <Modal
         open={open}
         onClose={funcClose}
@@ -78,7 +92,7 @@ export default function BasicModal({
       >
         <Box sx={style}>
           <h1 className="title-create">Editar ensaio</h1>
-          <form className="create-schedule">
+          <form className="create-schedule" onSubmit={handleUpdateSchedule}>
             <label className="label-create">Nome do evento</label>
             <input
               className="input-create"
@@ -112,10 +126,15 @@ export default function BasicModal({
               onChange={(e) => setHour(e.target.value)}
             />
 
-            <button onClick={handleUpdateSchedule} className="btn-create">
+            <button
+              onClick={handleClick({
+                vertical: "bottom",
+                horizontal: "right",
+              })}
+              className="btn-create"
+            >
               Atualizar
             </button>
-            {message && <h1>{message}</h1>}
           </form>
         </Box>
       </Modal>
