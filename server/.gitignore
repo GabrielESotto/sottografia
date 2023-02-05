@@ -4,9 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-tmp/uploads/*
+/tmp/uploads/*
 !tmp/uploads/.gitkeep
-uploads/photos/*
+/uploads/photos/*
 !uploads/photos/.gitkeep
 
 # testing
